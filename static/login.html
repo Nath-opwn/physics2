@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录 - 流体动力学模拟系统</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+        
+        .form-signin {
+            max-width: 400px;
+            padding: 15px;
+            margin: 0 auto;
+        }
+        
+        .form-signin .form-floating:focus-within {
+            z-index: 2;
+        }
+        
+        .form-signin input[type="text"] {
+            margin-bottom: -1px;
+            border-bottom-right-radius: 0;
+            border-bottom-left-radius: 0;
+        }
+        
+        .form-signin input[type="password"] {
+            margin-bottom: 10px;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        
+        .form-signin input[type="email"] {
+            margin-bottom: -1px;
+            border-radius: 0;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+        
+        .login-card {
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-tabs .nav-link {
+            color: #6c757d;
+            font-weight: 500;
+        }
+        
+        .login-tabs .nav-link.active {
+            color: #0d6efd;
+            font-weight: 600;
+        }
+        
+        .alert {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-signin">
+            <div class="login-header">
+                <img src="https://cdn-icons-png.flaticon.com/512/4341/4341139.png" alt="Logo" class="img-fluid">
+                <h1 class="h3 mb-3 fw-normal">流体动力学模拟系统</h1>
+            </div>
+            
+            <div class="card login-card">
+                <div class="card-header bg-white">
+                    <ul class="nav nav-tabs card-header-tabs login-tabs" id="loginTabs">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="login-tab" href="#login">登录</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="register-tab" href="#register">注册</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <!-- 登录表单 -->
+                    <div id="login-form-container">
+                        <div class="alert alert-danger" id="login-alert"></div>
+                        <form id="login-form">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="login-username" placeholder="用户名" required>
+                                <label for="login-username">用户名</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="login-password" placeholder="密码" required>
+                                <label for="login-password">密码</label>
+                            </div>
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" value="" id="remember-me">
+                                <label class="form-check-label" for="remember-me">
+                                    记住我
+                                </label>
+                            </div>
+                            <button class="w-100 btn btn-lg btn-primary" type="submit">登录</button>
+                        </form>
+                    </div>
+                    
+                    <!-- 注册表单 -->
+                    <div id="register-form-container" style="display: none;">
+                        <div class="alert alert-danger" id="register-alert"></div>
+                        <form id="register-form">
+                            <div class="form-floating mb-3">
+                                <input type="text" class="form-control" id="register-username" placeholder="用户名" required>
+                                <label for="register-username">用户名</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="email" class="form-control" id="register-email" placeholder="邮箱" required>
+                                <label for="register-email">邮箱</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="register-password" placeholder="密码" required>
+                                <label for="register-password">密码</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" class="form-control" id="register-confirm-password" placeholder="确认密码" required>
+                                <label for="register-confirm-password">确认密码</label>
+                            </div>
+                            <button class="w-100 btn btn-lg btn-primary" type="submit">注册</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-3 text-center">
+                <a href="index.html" class="text-decoration-none">返回首页</a>
+            </div>
+            
+            <p class="mt-5 mb-3 text-muted text-center">&copy; 2023 流体动力学模拟系统</p>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 认证脚本 -->
+    <script src="js/auth.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 检查用户是否已登录
+            if (authManager.isLoggedIn()) {
+                window.location.href = 'index.html';
+            }
+            
+            // 标签切换
+            document.getElementById('login-tab').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('login-tab').classList.add('active');
+                document.getElementById('register-tab').classList.remove('active');
+                document.getElementById('login-form-container').style.display = 'block';
+                document.getElementById('register-form-container').style.display = 'none';
+            });
+            
+            document.getElementById('register-tab').addEventListener('click', function(e) {
+                e.preventDefault();
+                document.getElementById('register-tab').classList.add('active');
+                document.getElementById('login-tab').classList.remove('active');
+                document.getElementById('register-form-container').style.display = 'block';
+                document.getElementById('login-form-container').style.display = 'none';
+            });
+            
+            // 登录表单提交
+            document.getElementById('login-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('login-username').value;
+                const password = document.getElementById('login-password').value;
+                
+                const result = await authManager.login(username, password);
+                
+                if (result.success) {
+                    window.location.href = 'index.html';
+                } else {
+                    const alertEl = document.getElementById('login-alert');
+                    alertEl.textContent = result.message;
+                    alertEl.style.display = 'block';
+                }
+            });
+            
+            // 注册表单提交
+            document.getElementById('register-form').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('register-username').value;
+                const email = document.getElementById('register-email').value;
+                const password = document.getElementById('register-password').value;
+                const confirmPassword = document.getElementById('register-confirm-password').value;
+                
+                const alertEl = document.getElementById('register-alert');
+                
+                // 验证密码
+                if (password !== confirmPassword) {
+                    alertEl.textContent = '两次输入的密码不一致';
+                    alertEl.style.display = 'block';
+                    return;
+                }
+                
+                const result = await authManager.register(username, email, password);
+                
+                if (result.success) {
+                    // 注册成功后自动登录
+                    const loginResult = await authManager.login(username, password);
+                    
+                    if (loginResult.success) {
+                        window.location.href = 'index.html';
+                    } else {
+                        alertEl.textContent = '注册成功，但登录失败: ' + loginResult.message;
+                        alertEl.style.display = 'block';
+                    }
+                } else {
+                    alertEl.textContent = result.message;
+                    alertEl.style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

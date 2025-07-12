@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>流体动力学模拟系统</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #0d6efd 0%, #0dcaf0 100%);
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+        }
+        
+        .hero-title {
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .hero-subtitle {
+            font-weight: 300;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 20px;
+            height: 100%;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #0d6efd;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        
+        .status-online {
+            background-color: #28a745;
+        }
+        
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 30px 0;
+            margin-top: 60px;
+        }
+        
+        .nav-link.active {
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">流体动力学模拟系统</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">首页</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="simulation.html">模拟</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="visualization.html">可视化</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="analysis.html">分析</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="knowledge.html">知识库</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="monitoring.html">系统监控</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="api-docs.html">API文档</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                            <span id="username">用户</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="profile.html">个人资料</a></li>
+                            <li><a class="dropdown-item" href="settings.html">设置</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="logout-btn">退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- 英雄区域 -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="hero-title">高性能流体动力学模拟系统</h1>
+            <p class="hero-subtitle">
+                基于先进算法的流体模拟平台，支持实时数据流、高级可视化、GPU加速和多模态分析
+            </p>
+            <div class="d-flex gap-3">
+                <a href="simulation.html" class="btn btn-light btn-lg">开始模拟</a>
+                <a href="docs" class="btn btn-outline-light btn-lg">API文档</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 功能特性 -->
+    <section class="container mb-5">
+        <h2 class="text-center mb-5">核心功能</h2>
+        
+        <div class="row g-4">
+            <!-- 实时模拟 -->
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-tachometer-alt"></i>
+                        </div>
+                        <h4>实时流体模拟</h4>
+                        <p class="text-muted">
+                            基于高效算法的流体模拟，支持实时交互和参数调整，提供流线、涡量等多种可视化方式
+                        </p>
+                        <a href="simulation.html" class="btn btn-primary">开始模拟</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 高级可视化 -->
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>高级可视化</h4>
+                        <p class="text-muted">
+                            支持流线、粒子追踪、等值面等多种可视化方式，直观展示流体动力学特性
+                        </p>
+                        <a href="visualization.html" class="btn btn-primary">查看可视化</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 数据分析 -->
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-microscope"></i>
+                        </div>
+                        <h4>多模态分析</h4>
+                        <p class="text-muted">
+                            提供涡结构识别、湍流统计、频谱分析等多种分析工具，深入理解流体行为
+                        </p>
+                        <a href="analysis.html" class="btn btn-primary">开始分析</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- GPU加速 -->
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>GPU加速计算</h4>
+                        <p class="text-muted">
+                            利用CUDA技术实现GPU加速，大幅提升计算性能，支持更大规模、更高精度的模拟
+                        </p>
+                        <a href="performance.html" class="btn btn-primary">性能对比</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 知识库 -->
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <h4>流体动力学知识库</h4>
+                        <p class="text-muted">
+                            包含丰富的流体动力学理论知识、案例分析和教程，助力学习与研究
+                        </p>
+                        <a href="knowledge.html" class="btn btn-primary">浏览知识库</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 系统监控 -->
+            <div class="col-md-4">
+                <div class="card feature-card">
+                    <div class="card-body text-center p-4">
+                        <div class="feature-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <h4>系统监控</h4>
+                        <p class="text-muted">
+                            实时监控系统资源使用情况，提供详细的错误日志和性能指标，确保系统稳定运行
+                        </p>
+                        <a href="monitoring.html" class="btn btn-primary">查看监控</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 系统状态 -->
+    <section class="container mb-5">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h5 class="mb-0">系统状态</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="status-indicator status-online"></span>
+                            <span>API服务：<strong>在线</strong></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="status-indicator status-online"></span>
+                            <span>WebSocket服务：<strong>在线</strong></span>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <span class="status-indicator status-online"></span>
+                            <span>数据库服务：<strong>在线</strong></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="text-end">
+                    <a href="monitoring.html" class="btn btn-sm btn-outline-primary">查看详细监控</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 快速入门 -->
+    <section class="container mb-5">
+        <h2 class="text-center mb-4">快速入门</h2>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <ol class="mb-0">
+                            <li class="mb-3">
+                                <strong>创建模拟：</strong> 访问<a href="simulation.html">模拟页面</a>，选择模拟类型并设置参数
+                            </li>
+                            <li class="mb-3">
+                                <strong>运行模拟：</strong> 点击"开始模拟"按钮，系统将实时计算并显示结果
+                            </li>
+                            <li class="mb-3">
+                                <strong>可视化结果：</strong> 在<a href="visualization.html">可视化页面</a>选择不同的可视化方式查看结果
+                            </li>
+                            <li class="mb-3">
+                                <strong>分析数据：</strong> 使用<a href="analysis.html">分析工具</a>深入研究流体行为
+                            </li>
+                            <li>
+                                <strong>导出结果：</strong> 将模拟结果导出为图像、视频或数据文件
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h5>流体动力学模拟系统</h5>
+                    <p class="text-muted">
+                        高性能流体动力学模拟与可视化平台，支持GPU加速、实时数据流和多模态分析
+                    </p>
+                </div>
+                <div class="col-md-3">
+                    <h5>快速链接</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="simulation.html" class="text-white">模拟</a></li>
+                        <li><a href="visualization.html" class="text-white">可视化</a></li>
+                        <li><a href="analysis.html" class="text-white">分析</a></li>
+                        <li><a href="knowledge.html" class="text-white">知识库</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>帮助与支持</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="docs" class="text-white">API文档</a></li>
+                        <li><a href="tutorial.html" class="text-white">使用教程</a></li>
+                        <li><a href="faq.html" class="text-white">常见问题</a></li>
+                        <li><a href="contact.html" class="text-white">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-4 mb-4 bg-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; 2023 流体动力学模拟系统</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- 认证脚本 -->
+    <script src="js/auth.js"></script>
+    
+    <script>
+        // 检查用户是否已登录
+        document.addEventListener('DOMContentLoaded', function() {
+            const token = localStorage.getItem('auth_token');
+            const username = localStorage.getItem('username');
+            
+            if (token && username) {
+                document.getElementById('username').textContent = username;
+            }
+            
+            // 退出按钮事件
+            document.getElementById('logout-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('auth_token');
+                localStorage.removeItem('username');
+                window.location.href = 'login.html';
+            });
+            
+            // 检查系统状态
+            fetch('/api/monitoring/health')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('API服务不可用');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('系统状态:', data);
+                })
+                .catch(error => {
+                    console.error('获取系统状态失败:', error);
+                    document.querySelectorAll('.status-indicator').forEach(el => {
+                        el.classList.remove('status-online');
+                        el.classList.add('status-offline');
+                        el.style.backgroundColor = '#dc3545';
+                    });
+                    document.querySelectorAll('.status-indicator + span strong').forEach(el => {
+                        el.textContent = '离线';
+                        el.style.color = '#dc3545';
+                    });
+                });
+        });
+    </script>
+</body>
+</html> 
